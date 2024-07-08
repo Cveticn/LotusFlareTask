@@ -33,5 +33,8 @@ public class BasePage {
     @FindBy(css = "[class='shopping_cart_link']")
     public WebElement shoppingCartButton;
 
+    @FindBy(css = "[class='app_logo']")
+    public WebElement basePageHeader;
+
 
 }
