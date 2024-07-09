@@ -36,7 +36,7 @@ Feature: Login functionality of the application
       And user clicks on login button
       Then verify that username and password do not match error message is displayed
 
-      @wip
+
       Scenario: user can use keyboard keys to navigate through login page
         When user enters valid username
         And user clicks tab on keyboard

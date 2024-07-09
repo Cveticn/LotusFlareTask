@@ -24,6 +24,9 @@ public class ShoppingCartPage {
     @FindBy(xpath = "(//button[@class='btn btn_secondary btn_small cart_button'])[1]")
     public WebElement removeFirstItemButton;
 
+    @FindBy(css = "[class='inventory_item_price']")
+    public  List<WebElement> shoppingCartPriceTag;
+
     @FindBy(css = "[id='checkout']")
     public WebElement checkoutButton;
 

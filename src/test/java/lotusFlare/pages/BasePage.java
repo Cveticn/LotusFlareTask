@@ -27,8 +27,14 @@ public class BasePage {
     @FindBy(xpath = "//button[@class='btn btn_primary btn_small btn_inventory']")
     public WebElement addToCartDetailsPageButton;
 
+    @FindBy(xpath = "//div[@class='inventory_item_price']")
+    public List<WebElement> priceTag;
+
     @FindBy(css = "[class='inventory_details_name large_size']")
     public WebElement inventoryDetailsItemName;
+
+    @FindBy(css = "[class='inventory_details_price']")
+    public WebElement inventoryDetailsPriceTag;
 
     @FindBy(css = "[class='shopping_cart_link']")
     public WebElement shoppingCartButton;

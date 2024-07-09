@@ -1,5 +1,6 @@
 package lotusFlare.pages;
 
+import lotusFlare.utilities.ConfigPropertiesReader;
 import lotusFlare.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,5 +25,15 @@ public class LoginPage {
 
     @FindBy(xpath = "//h3[@data-test='error']")
     public  WebElement errorMessage;
+
+    public void logIn (String username, String password) {
+
+        userNameInputBox.sendKeys(username);
+
+        passwordInputBox.sendKeys(password);
+
+        loginButton.click();
+
+    }
 
 }
