@@ -10,8 +10,7 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber"
         },
         features = "src/test/resources/features",
-        glue = "lotusFlare/stepDefinitions",
-        tags = "@wip"
+        glue = "lotusFlare/stepDefinitions"
 )
 public class CucumberRunner {
 

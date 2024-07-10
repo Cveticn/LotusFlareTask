@@ -46,10 +46,16 @@ public class ShoppingCartPage {
     public WebElement checkoutItem;
 
     @FindBy(css = "[class='inventory_item_price']")
-    public WebElement itemPrice;
+    public List<WebElement> itemPrices;
 
     @FindBy(css = "[class='summary_subtotal_label']")
     public WebElement itemTotalAmount;
+
+    @FindBy(css = "[class='summary_tax_label']")
+    public WebElement taxAmount;
+
+    @FindBy(css = "[class='summary_total_label']")
+    public WebElement totalAmount;
 
     @FindBy(css = "[id='finish']")
     public WebElement finishButton;

@@ -83,7 +83,9 @@ public class AddingItemsStepDefinitions {
     @Then("user adds the item to the cart")
     public void user_adds_the_item_to_the_cart() {
 
-        basePage.addToCartDetailsPageButton.click();
+        basePage.waitForAvailabilityOfWebElement(basePage.addToCartDetailsPageButton);
+
+        //basePage.addToCartDetailsPageButton.click();
 
         //verifying that shopping cart badge is updating as expected
         Assert.assertEquals("2", basePage.shoppingCartBadge.getText());

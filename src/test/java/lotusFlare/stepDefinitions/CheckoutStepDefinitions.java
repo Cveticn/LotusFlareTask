@@ -19,14 +19,9 @@ public class CheckoutStepDefinitions {
 
     int randomNumber2;
 
-    String firstItemName;
+    String firstItemName, secondItemName, firstItemPriceTag, secondItemPriceTag;
 
-    String secondItemName;
-
-    String firstItemPriceTag;
-
-    String secondItemPriceTag;
-
+    double firstItemPriceDouble, secondItemPriceDouble, itemTotalAmountDouble, totalTaxDouble, totalDouble;
 
 
     @When("user adds first item to the cart")
@@ -67,8 +62,9 @@ public class CheckoutStepDefinitions {
 
         System.out.println(secondItemPriceTag);
 
-        basePage.addToCartDetailsPageButton.click();
+        //basePage.addToCartDetailsPageButton.click();
 
+        basePage.waitForAvailabilityOfWebElement(basePage.addToCartDetailsPageButton);
 
     }
     @When("user clicks on shopping cart")
@@ -142,6 +138,63 @@ public class CheckoutStepDefinitions {
 
         //verifying that expected text is displayed
         Assert.assertEquals("Your order has been dispatched, and will arrive just as fast as the pony can get there!", shoppingCartPage.successfulMessage2.getText());
+
+
+    }
+
+    @Then("verify that prices of the items are added up correctly")
+    public void verify_that_prices_of_the_items_are_added_up_correctly() throws InterruptedException {
+
+        double delta = 0.01;
+
+        //getting only digits with substring method
+        String itemPrice1 = shoppingCartPage.itemPrices.get(0).getText().substring(1);
+
+        //parsing price of first item into double to perform math operations
+        firstItemPriceDouble = Double.parseDouble(itemPrice1);
+
+        //getting only digits with substring method
+        String itemPrice2 = shoppingCartPage.itemPrices.get(1).getText().substring(1);
+
+        secondItemPriceDouble = Double.parseDouble(itemPrice2);
+
+        double itemAddition = firstItemPriceDouble + secondItemPriceDouble;
+
+        System.out.println(itemAddition);
+
+        //parsing item total amount to get only digits
+        String itemTotal = shoppingCartPage.itemTotalAmount.getText().substring(13);
+
+        itemTotalAmountDouble = Double.parseDouble(itemTotal);
+
+        //parsing tax to get only digits
+        String tax = shoppingCartPage.taxAmount.getText().substring(6);
+
+        totalTaxDouble = Double.parseDouble(tax);
+
+        //parsing total amount to get only digits
+        String total = shoppingCartPage.totalAmount.getText().substring(8);
+
+        totalDouble = Math.round(Double.parseDouble(total));
+
+        //getting double value by adding sum of items + total tax, rounding to 2 decimals
+        double itemTotalsPlusTax = Math.round(itemAddition + totalTaxDouble);
+
+        //verifying that sum of two items in a cart are equal to Item Total on the Checkout Page
+        Assert.assertEquals(itemAddition, itemTotalAmountDouble, delta );
+
+        //Verifying that sum of two items + tax amount is equal to total amount displayed on the Checkout Page
+        Assert.assertEquals(itemTotalsPlusTax, totalDouble, delta);
+
+
+
+
+
+
+
+
+
+
 
 
     }
